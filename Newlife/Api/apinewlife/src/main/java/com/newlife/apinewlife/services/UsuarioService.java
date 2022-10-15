@@ -9,9 +9,10 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
-import com.unab.proyectounab.data.entidades.Usuarioentity;
-import com.unab.proyectounab.data.repositorios.IUsuariorepository;
-import com.unab.proyectounab.shared.UsuarioDto;
+
+import com.newlife.apinewlife.data.entidades.UsuarioEntity;
+import com.newlife.apinewlife.data.repositorios.IUsuariorepository;
+import com.newlife.apinewlife.shared.UsuarioDto;
 
 @Service
 public class UsuarioService implements IUsuarioService {
@@ -37,11 +38,11 @@ public class UsuarioService implements IUsuarioService {
             throw new RuntimeException("Este usuario ya esta en uso");
         }
 
-        Usuarioentity usuarioEntityDto= modelMapper.map(usuarioCrearDto, Usuarioentity.class);
+        UsuarioEntity usuarioEntityDto= modelMapper.map(usuarioCrearDto, UsuarioEntity.class);
         usuarioEntityDto.setIdUsuario(UUID.randomUUID().toString());
         usuarioEntityDto.setPasswordEncriptada(bCryptPasswordEncoder.encode(usuarioCrearDto.getPassword()));
 
-        Usuarioentity usuarioEntity= iUsuarioRepository.save(usuarioEntityDto);
+        UsuarioEntity usuarioEntity= iUsuarioRepository.save(usuarioEntityDto);
 
         UsuarioDto usuarioDto= modelMapper.map(usuarioEntity, UsuarioDto.class);
 
@@ -51,7 +52,7 @@ public class UsuarioService implements IUsuarioService {
     @Override
     public UsuarioDto leerUsuario(String username) {
 
-        Usuarioentity usuarioEntity= iUsuarioRepository.findByUsername(username);
+        UsuarioEntity usuarioEntity= iUsuarioRepository.findByUsername(username);
 
         if(usuarioEntity==null){
             throw new UsernameNotFoundException(username);
@@ -67,7 +68,7 @@ public class UsuarioService implements IUsuarioService {
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 
-        Usuarioentity usuarioEntity= iUsuarioRepository.findByUsername(username);
+        UsuarioEntity usuarioEntity= iUsuarioRepository.findByUsername(username);
 
         if(usuarioEntity==null){
             throw new UsernameNotFoundException(username);

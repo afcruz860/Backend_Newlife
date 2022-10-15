@@ -18,10 +18,10 @@ import org.springframework.security.core.userdetails.User;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.unab.proyectounab.models.peticiones.UsuarioSingupRequestModel;
-import com.unab.proyectounab.services.IUsuarioService;
-import com.unab.proyectounab.shared.UsuarioDto;
-import com.unab.proyectounab.utils.AppContexto;
+import com.newlife.apinewlife.models.peticiones.UsuarioSingupRequestModel;
+import com.newlife.apinewlife.services.IUsuarioService;
+import com.newlife.apinewlife.shared.UsuarioDto;
+import com.newlife.apinewlife.utils.AppContexto;
 
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.io.Decoders;
